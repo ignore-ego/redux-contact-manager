@@ -1,15 +1,14 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
-
-const baseUrl = import.meta.env.VITE_SERVER_URI;
+import { client } from './api/test';
+import { Button } from './components/ui/Button';
 
 function App() {
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    axios
-      .get(`${baseUrl}/profile`)
+    client
+      .get('/profile')
       .then((response) => {
         const { data } = response;
 
@@ -31,6 +30,8 @@ function App() {
   return (
     <h1 className="text-3xl font-bold underline">
       {name.trim().length <= 0 ? '...loading' : name}
+
+      <Button>aici se proiecteaza children elements</Button>
     </h1>
   );
 }
