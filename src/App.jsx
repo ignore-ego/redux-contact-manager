@@ -1,10 +1,16 @@
 import { useEffect, useState } from 'react';
 import { client } from './api/test';
 import { Button } from './components/ui/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { Footer } from './components/Footer';
 
 function App() {
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
+  const dispatch = useDispatch();
+  const sse = useSelector(({ counter }) => {
+    return counter;
+  });
 
   useEffect(() => {
     client
@@ -28,11 +34,50 @@ function App() {
   }
 
   return (
-    <h1 className="text-3xl font-bold underline">
-      {name.trim().length <= 0 ? '...loading' : name}
+    <>
+      <h1 className="text-3xl font-bold underline">
+        {name.trim().length <= 0 ? '...loading' : name}
 
-      <Button>aici se proiecteaza children elements</Button>
-    </h1>
+        <Button>aici se proiecteaza children elements</Button>
+      </h1>
+
+      <div className="mt-14">
+        <button
+          onClick={() => {
+            dispatch({
+              type: 'decrement',
+            });
+          }}
+        >
+          -
+        </button>
+
+        <span className="mx-8">{sse}</span>
+
+        <button
+          onClick={() => {
+            dispatch({
+              type: 'increment',
+            });
+          }}
+        >
+          +
+        </button>
+      </div>
+
+      <button
+        onClick={() => {
+          dispatch({
+            type: 'add',
+            payload: 42,
+          });
+        }}
+      >
+        Add 42
+      </button>
+
+      <Footer value={sse}></Footer>
+    </>
   );
 }
 

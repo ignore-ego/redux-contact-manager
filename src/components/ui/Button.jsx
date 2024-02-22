@@ -1,4 +1,4 @@
-// disclaimer : better in tailwind
+// disclaimer: better in tailwind
 const skins = {
   primary: 'bg-blue-500',
 };
@@ -14,7 +14,7 @@ export const Button = ({
   const Element = element;
 
   return (
-    <Element className={`${skinClasses}${className}`} {...props}>
+    <Element className={`${skinClasses} ${className}`} {...props}>
       {children}
     </Element>
   );
