@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Button } from '../../ui';
+import { GoogleLogin } from './../../auth';
 
 export const HeaderSecondary = () => {
   const authenticated = useSelector(({ auth }) => {
@@ -14,7 +15,7 @@ export const HeaderSecondary = () => {
             Add Contact
           </Button>
         ) : (
-          <>google</>
+          <GoogleLogin></GoogleLogin>
         )}
       </div>
     </section>
