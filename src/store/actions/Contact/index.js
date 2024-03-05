@@ -15,3 +15,10 @@ export const createContact = (contact) => {
     return data;
   };
 };
+
+export const setContact = (contact) => {
+  return {
+    type: 'contacts/set',
+    payload: contact,
+  };
+};
